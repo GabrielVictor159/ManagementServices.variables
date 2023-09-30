@@ -28,5 +28,5 @@ jobs:
         run: |
           dotnet nuget push ./nupkg/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
         env:
-          DOTNET_ROOT: ${{ secrets.NUGET_ROOT }}
+          DOTNET_ROOT: ${{ env.NUGET_ROOT }}
         working-directory: ${{ secrets.WORKSPACE }}
