@@ -60,9 +60,6 @@ repository.Update(retrievedEnv);
 repository.Delete("VAR_KEY");
 ```
 
-## Licença
-
-Este projeto está sob a licença [LICENSE](link_para_licença). Certifique-se de revisar e cumprir os termos da licença ao usar este projeto em seu software.
 
 ## Contribuições
 
@@ -70,6 +67,6 @@ Contribuições para este projeto são bem-vindas. Se você deseja contribuir, a
 
 ## Contato
 
-Se você tiver alguma dúvida ou precisar de suporte, entre em contato pelo email: [seu_email@exemplo.com].
+Se você tiver alguma dúvida ou precisar de suporte, entre em contato pelo email: [gabrielvictor159487@gmail.com].
 
 Espero que esta documentação básica ajude a entender a funcionalidade e o uso do seu projeto de gerenciamento de variáveis de ambiente. Certifique-se de personalizar e expandir esta documentação de acordo com as necessidades do seu projeto.
