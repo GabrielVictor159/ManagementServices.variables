@@ -13,7 +13,7 @@ namespace ManagementServices.variables.Infrastructure.Database.Repositories
 {
     public class EnvVariableRepository<Context> where Context : DbContext, new()
     {
-        public int Add(Domain.Models.EnvVariable env)
+        protected int Add(Domain.Models.EnvVariable env)
         {
             using var context = new Context();  
             if (!env.IsValid)
@@ -25,7 +25,7 @@ namespace ManagementServices.variables.Infrastructure.Database.Repositories
         }
 
 
-        public int AddRange(List<Domain.Models.EnvVariable> envs)
+        protected int AddRange(List<Domain.Models.EnvVariable> envs)
         {
             using var context = new Context();
             foreach (var env in envs) 
@@ -45,7 +45,7 @@ namespace ManagementServices.variables.Infrastructure.Database.Repositories
         }
 
 
-        public Domain.Models.EnvVariable? Get(string Key)
+        protected Domain.Models.EnvVariable? Get(string Key)
         {
             using var context = new Context();
             var entity = context.Set<Entities.EnvVariable>().Find(Key);
@@ -60,7 +60,7 @@ namespace ManagementServices.variables.Infrastructure.Database.Repositories
         }
 
 
-        public List<Domain.Models.EnvVariable> GetByFilter(Expression<Func<Entities.EnvVariable, bool>> expression, int page, int pageSize)
+        protected List<Domain.Models.EnvVariable> GetByFilter(Expression<Func<Entities.EnvVariable, bool>> expression, int page, int pageSize)
         {
             using var context = new Context();
             var query = context.Set<Entities.EnvVariable>().Where(expression);
@@ -75,14 +75,14 @@ namespace ManagementServices.variables.Infrastructure.Database.Repositories
             return domainList;
         }
 
-        public int Update(Domain.Models.EnvVariable env)
+        protected int Update(Domain.Models.EnvVariable env)
         {
             using var context = new Context();
             var entity = ConvertProfiles.ConvertEnvVariable(env);
             context.Set<Entities.EnvVariable>().Update(entity);
             return context.SaveChanges();
         }
-        public int Delete(string key) 
+        protected int Delete(string key) 
         {
             using var context = new Context();
             int result = 0;
@@ -94,7 +94,7 @@ namespace ManagementServices.variables.Infrastructure.Database.Repositories
             }
             return result;
         }
-        public int DeleteRange(List<string> keys)
+        protected int DeleteRange(List<string> keys)
         {
             using var context = new Context();
             int result = 0;

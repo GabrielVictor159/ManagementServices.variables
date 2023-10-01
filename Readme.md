@@ -1,72 +1,44 @@
-# Documentação do Projeto de Gerenciamento de Variáveis de Ambiente
+# Environment Variable Management Project Documentation
 
-Este projeto é um sistema de biblioteca para gerenciamento de variáveis de ambiente. Ele permite que os desenvolvedores adicionem, atualizem, excluam e consultem variáveis de ambiente em um banco de dados. O sistema é flexível e permite que você use injeção de dependência para configurar os repositórios de banco de dados.
+This project is a library system for managing environment variables. It allows developers to add, update, delete, and query environment variables in a database. The system is flexible and enables you to use dependency injection to configure database repositories.
 
-## Classes Principais
+## Main Classes
 
-### Classe `EnvVariable`
+### `EnvVariable` Class
 
-A classe `EnvVariable` é o modelo principal para representar uma variável de ambiente. Ela contém os seguintes atributos:
+The `EnvVariable` class is the primary model for representing an environment variable. It contains the following attributes:
 
-- `Key` (string): A chave da variável de ambiente.
-- `Value` (string): O valor associado à chave da variável de ambiente.
+- `Key` (string): The key of the environment variable.
+- `Value` (string): The value associated with the key of the environment variable.
 
-Esta classe herda da classe `Entity`, que fornece validação e funcionalidade de clonagem.
+This class inherits from the `Entity` class, which provides validation and cloning functionality.
 
-### Classe `EnvVariableRepository`
+### `EnvVariableRepository` Class
 
-A classe `EnvVariableRepository` é responsável por interagir com o banco de dados para operações relacionadas a variáveis de ambiente. Ela contém os seguintes métodos principais:
+The `EnvVariableRepository` class is responsible for interacting with the database for operations related to environment variables. It contains the following main methods:
 
-- `Add`: Adiciona uma variável de ambiente ao banco de dados.
-- `AddRange`: Adiciona uma lista de variáveis de ambiente ao banco de dados.
-- `Get`: Obtém uma variável de ambiente com base na chave.
-- `GetByFilter`: Obtém uma lista de variáveis de ambiente com base em uma expressão de filtro.
-- `Update`: Atualiza uma variável de ambiente no banco de dados.
-- `Delete`: Exclui uma variável de ambiente com base na chave.
-- `DeleteRange`: Exclui uma lista de variáveis de ambiente com base em uma lista de chaves.
+- `Add`: Adds an environment variable to the database.
+- `AddRange`: Adds a list of environment variables to the database.
+- `Get`: Retrieves an environment variable based on the key.
+- `GetByFilter`: Retrieves a list of environment variables based on a filter expression.
+- `Update`: Updates an environment variable in the database.
+- `Delete`: Deletes an environment variable based on the key.
+- `DeleteRange`: Deletes a list of environment variables based on a list of keys.
 
-## Uso
+## Usage
 
-Para usar este sistema de gerenciamento de variáveis de ambiente em seu projeto, siga estas etapas:
+To use this environment variable management system in your project, follow these steps:
 
-1. Instale o pacote NuGet correspondente à biblioteca em seu projeto.
+1. Install the corresponding NuGet package for the library in your project.
 
-2. Configure a injeção de dependência para o `EnvVariableRepository` com o contexto de banco de dados apropriado.
+2. Configure dependency injection for the `EnvVariableRepository` with the appropriate database context. To do this, you may need to create an intermediate repository that receives methods from `EnvVariableRepository`.
 
-3. Use os métodos do `EnvVariableRepository` para realizar operações CRUD em variáveis de ambiente no banco de dados.
+3. Use the methods of the `EnvVariableRepository` to perform CRUD operations on environment variables in the database.
 
-Exemplo de uso:
+## Contributions
 
-```csharp
-// Configuração da injeção de dependência
-var dbContextOptions = new DbContextOptionsBuilder<Context>()
-    .UseSqlServer("sua_string_de_conexão")
-    .Options;
+Contributions to this project are welcome. If you wish to contribute, please open an issue or submit a pull request.
 
-var repository = new EnvVariableRepository<Context>();
+## Contact
 
-// Adiciona uma variável de ambiente
-var env = new EnvVariable { Key = "VAR_KEY", Value = "VAR_VALUE" };
-repository.Add(env);
-
-// Obtém uma variável de ambiente por chave
-var retrievedEnv = repository.Get("VAR_KEY");
-
-// Atualiza uma variável de ambiente
-retrievedEnv.Value = "NEW_VALUE";
-repository.Update(retrievedEnv);
-
-// Exclui uma variável de ambiente
-repository.Delete("VAR_KEY");
-```
-
-
-## Contribuições
-
-Contribuições para este projeto são bem-vindas. Se você deseja contribuir, abra uma issue ou envie um pull request.
-
-## Contato
-
-Se você tiver alguma dúvida ou precisar de suporte, entre em contato pelo email: [gabrielvictor159487@gmail.com].
-
-Espero que esta documentação básica ajude a entender a funcionalidade e o uso do seu projeto de gerenciamento de variáveis de ambiente. Certifique-se de personalizar e expandir esta documentação de acordo com as necessidades do seu projeto.
+If you have any questions or need support, please contact us via email at [gabrielvictor159487@gmail.com].
