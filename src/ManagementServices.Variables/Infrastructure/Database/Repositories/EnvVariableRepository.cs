@@ -8,12 +8,13 @@ using ManagementServices.variables.Infrastructure.ConvertProfile;
 using System.Linq.Expressions;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using ManagementServices.variables.Domain;
+using ManagementServices.variables.Application.Interfaces;
 
 namespace ManagementServices.variables.Infrastructure.Database.Repositories
 {
-    public class EnvVariableRepository<Context> where Context : DbContext, new()
+    public class EnvVariableRepository<Context> : IEnvVariableRepository where Context : DbContext, new()
     {
-        protected int Add(Domain.Models.EnvVariable env)
+        public int Add(Domain.Models.EnvVariable env)
         {
             using var context = new Context();  
             if (!env.IsValid)
@@ -25,7 +26,7 @@ namespace ManagementServices.variables.Infrastructure.Database.Repositories
         }
 
 
-        protected int AddRange(List<Domain.Models.EnvVariable> envs)
+        public int AddRange(List<Domain.Models.EnvVariable> envs)
         {
             using var context = new Context();
             foreach (var env in envs) 
@@ -45,7 +46,7 @@ namespace ManagementServices.variables.Infrastructure.Database.Repositories
         }
 
 
-        protected Domain.Models.EnvVariable? Get(string Key)
+        public Domain.Models.EnvVariable? Get(string Key)
         {
             using var context = new Context();
             var entity = context.Set<Entities.EnvVariable>().Find(Key);
@@ -60,7 +61,7 @@ namespace ManagementServices.variables.Infrastructure.Database.Repositories
         }
 
 
-        protected List<Domain.Models.EnvVariable> GetByFilter(Expression<Func<Entities.EnvVariable, bool>> expression, int page, int pageSize)
+        public List<Domain.Models.EnvVariable> GetByFilter(Expression<Func<Entities.EnvVariable, bool>> expression, int page, int pageSize)
         {
             using var context = new Context();
             var query = context.Set<Entities.EnvVariable>().Where(expression);
@@ -75,14 +76,14 @@ namespace ManagementServices.variables.Infrastructure.Database.Repositories
             return domainList;
         }
 
-        protected int Update(Domain.Models.EnvVariable env)
+        public int Update(Domain.Models.EnvVariable env)
         {
             using var context = new Context();
             var entity = ConvertProfiles.ConvertEnvVariable(env);
             context.Set<Entities.EnvVariable>().Update(entity);
             return context.SaveChanges();
         }
-        protected int Delete(string key) 
+        public int Delete(string key) 
         {
             using var context = new Context();
             int result = 0;
@@ -94,7 +95,7 @@ namespace ManagementServices.variables.Infrastructure.Database.Repositories
             }
             return result;
         }
-        protected int DeleteRange(List<string> keys)
+        public int DeleteRange(List<string> keys)
         {
             using var context = new Context();
             int result = 0;

@@ -31,7 +31,7 @@ To use this environment variable management system in your project, follow these
 
 1. Install the corresponding NuGet package for the library in your project.
 
-2. Configure dependency injection for the `EnvVariableRepository` with the appropriate database context. To do this, you may need to create an intermediate repository that receives methods from `EnvVariableRepository`.
+2. Configure a dependency injection for `EnvVariableRepository` with the protected database context. For this you can use the IEnvVariable interface to doRepository.
 
 3. Use the methods of the `EnvVariableRepository` to perform CRUD operations on environment variables in the database.
 
